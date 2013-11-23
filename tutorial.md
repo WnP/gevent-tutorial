@@ -209,9 +209,7 @@ def synchronous():
         fetch(i)
 
 def asynchronous():
-    threads = []
-    for i in range(1,10):
-        threads.append(gevent.spawn(fetch, i))
+    threads = [gevent.spawn(fetch, i) for i in range(1,10)]
     gevent.joinall(threads)
 
 print('Synchronous:')
